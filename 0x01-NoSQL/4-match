@@ -1,2 +1,2 @@
 //  All matches
-db.school.find({name: { $eq: "Holberton school" })
+db.school.find({ name: { $eq: "Holberton school" })
