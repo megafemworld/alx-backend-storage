@@ -15,6 +15,6 @@ class Cache:
 
     def store(self, data: Union[str, bytes, int, float]) -> str:
         """generate a random key store the input data"""
-        rand_key = str(uuid.uuid())
+        rand_key : str = str(uuid.uuid4())
         self._redis.set(rand_key, data)
         return rand_key
