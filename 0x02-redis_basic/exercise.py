@@ -23,6 +23,7 @@ def call_history(method: Callable) -> Callable:
         self._redis.rpush(f'(method.__qualname__):inputs', str(args))
         output = methdo(self, *args)
         self._redis.rpush(f'(method.__qualname__):outputs', output)
+        return output
     return wrapper
 
 class Cache:
