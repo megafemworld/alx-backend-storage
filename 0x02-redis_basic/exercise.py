@@ -21,7 +21,7 @@ def call_history(method: Callable) -> Callable:
     def wrapper(self:Any, *args) -> str:
         """wrap for the decorator"""
         self._redis.rpush(f'(method.__qualname__):inputs', str(args))
-        output = methdo(self, args)
+        output = methdo(self, *args)
         self._redis.rpush(f'(method.__qualname__):outputs', output)
     return wrapper
 
