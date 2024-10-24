@@ -6,7 +6,7 @@ from functools import wraps
 from typing import Union, Callable, Optional, Any
 
 
-def count_calls(method: callable) -> callable :
+def count_calls(method: Callable) -> Callable:
     """count_calls decorator"""
     @wraps(method)
     def wrapper(self: Any, *args, **kwargs) -> str:
