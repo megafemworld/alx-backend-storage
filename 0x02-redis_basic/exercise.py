@@ -2,7 +2,7 @@
 """ Redis basic """
 import uuid
 import redis
-from typing import Union
+from typing import Union, Callable, Optional
 
 
 class Cache:
@@ -19,22 +19,17 @@ class Cache:
         self._redis.set(rand_key, data)
         return rand_key
 
-    def fn(value):
-        """convert to utf-8"""
-        return value.decode('utf-8')
-
-    @property
-    def get(self, key, fn=None):
+    def get(self, key, fn: Optional[Callable]=None):
         """convert the data back to the desired format."""
         if fn:
             return fn(self._redis.get(key))
         data = self._redis.get(key)
         return data
 
-    def get_int(self: bytes) -> int:
+    def get_int(self, data: bytes) -> int:
         """get a number"""
-        return int.from_bytes(self, sys.byteorder)
+        return int(data)
 
-    def get_str(self: bytes) -> str:
+    def get_str(self, data: bytes) -> str:
         """get a string"""
-        return self.decode("utf-8")
+        return data.decode("utf-8")
